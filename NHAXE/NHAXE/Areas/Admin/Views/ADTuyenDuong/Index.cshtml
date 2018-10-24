@@ -1,0 +1,126 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model List<Models.Framework.TuyenDuong>
+@section header{
+        Tuyến Đường
+    }
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="box">
+        
+        <div class="col-lg-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                  
+                    <p>
+                        @*<a class="btn btn-success" href='@Url.Action("Details", "ADTuyenDuong")'>Thêm Mới</a>*@
+
+                        <input class="btn btn-success" type="button" onclick="kiemTraQuyen('@ViewBag.Quyen','')" value="Thêm Mới" />
+                    </p>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Mã tuyến</th>
+                                    <th class="text-center">Bến Đi</th>
+                                    <th class="text-center">Bến Đến</th>
+                                    <th class="text-center">Thời Gian (H)</th>
+                                    <th class="text-center">Quảng Đường (KM)</th>
+                                    <th class="text-center">Chỉnh sửa dữ liệu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id="tr-item_@item.MaTD">
+                                        <td class="text-center">@item.MaTD</td>
+                                        <td class="text-center" >@item.BenDi</td>
+                                        <td class="text-center">@item.BenDen</td>
+                                        <td class="text-center">@item.ThoiGian</td>
+                                        <td class="text-center">@item.QuangDuong</td>
+                                        <td class="text-center">
+                                           
+                                            <button   type="button" onclick="kiemTraQuyen('@ViewBag.Quyen','@item.MaTD')" class="btn btn-warning btn-xs" ><i class="fa fa-edit"></i></button>
+                                            <a class="btn btn-danger btn-xs" onclick="deleteItem('@ViewBag.Quyen','@item.MaTD')" href="javascript:void(0)"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+
+    </div>
+   
+       
+        <script language="javascript">
+            function deleteItem(id, quyen) {
+                   if (quyen == "QUANLI" || quyen == "NHANVIENNHAPLIEU") {
+
+                    alert('Ban khong co quyen!');
+                } else {
+                    bootbox.confirm({
+                        title: "Thông báo xóa?",
+                        message: "Bạn có muốn xóa mục này không? ",
+                        buttons: {
+                            cancel: {
+                                label: '<i class="fa fa-times"></i> Hủy'
+                            },
+                            confirm: {
+                                label: '<i class="fa fa-check"></i> Tiếp tục'
+                            }
+                        },
+                        callback: function (result) {
+                            if (result == true) {
+                                $.post('/Admin/ADTuyenDuong/Delete', { id: id }, function (data) {
+                                    if (data.success == 1) {
+                                        alert('Xóa thành công!');
+                                        $('#tr-item_' + id).remove();
+                                    } else { alert('Xóa thất bại!'); }
+                                })
+                            }
+                        }
+                    });
+                }
+            }
+            function kiemTraQuyen(quyen, maTuyen) {
+                if (quyen == "QUANLI" || quyen == "NHANVIENNHAPLIEU") {
+
+                    if (maTuyen != "") {
+                        var url = "/Admin/ADTuyenDuong/Details?maTuyen=" + maTuyen;
+                        window.location.href = url;
+                    }
+                    else {
+                        var url = "/Admin/ADTuyenDuong/Details" + maTuyen;
+                        window.location.href = url;
+                    }
+
+                }else 
+                {
+                    alert('Ban khong co quyen!');
+                } 
+                   
+            }
+        </script>
+
+
+
+
+    </body>
+
+</html>

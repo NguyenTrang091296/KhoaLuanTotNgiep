@@ -1,0 +1,61 @@
+﻿@model Models.Framework.PhanCongCV
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+        Phân công công việc cho nhân viên
+    }
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal" style="margin-top: 50px;">
+    
+   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Bảng số xe:</label>
+            <div class="col-xs-5 selectContainer">
+                @Html.DropDownListFor(model => model.BSX , null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BSX, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Ngày bắt đầu:</label>
+            <div class="col-xs-3 selectContainer">
+                @Html.TextBoxFor(model => model.NgayBD, htmlAttributes:new {
+                @class = "salsa-calendar-input form-control dDate date-readonly", @id = "checkin",
+               @autocomplete = "off", @name = "arrival" })
+                @Html.ValidationMessageFor(model => model.NgayBD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Tài Xế:</label>
+            <div class="col-xs-5 selectContainer">
+                @Html.DropDownListFor(model => model.TaiXe , (SelectList)ViewBag.NhanVien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TaiXe, "", new { @class = "text-danger" })
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Tiếp Viên:</label>
+            <div class="col-xs-5 selectContainer">
+                @Html.DropDownListFor(model => model.TiepVien, (SelectList)ViewBag.NhanVien1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TiepVien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 btnm">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+</div>
+}
+
+<div style="margin-top: 222px;">
+    @Html.ActionLink("Quay lại", "Index")
+</div>

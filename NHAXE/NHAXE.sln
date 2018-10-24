@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHAXE", "NHAXE\NHAXE.csproj", "{3AD3E844-3243-4241-B21B-6E0CBE7FC999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{68E6113D-76ED-42D7-A4E1-BE76F6757DEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AD3E844-3243-4241-B21B-6E0CBE7FC999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AD3E844-3243-4241-B21B-6E0CBE7FC999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AD3E844-3243-4241-B21B-6E0CBE7FC999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AD3E844-3243-4241-B21B-6E0CBE7FC999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68E6113D-76ED-42D7-A4E1-BE76F6757DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68E6113D-76ED-42D7-A4E1-BE76F6757DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68E6113D-76ED-42D7-A4E1-BE76F6757DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68E6113D-76ED-42D7-A4E1-BE76F6757DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51C5AD65-9854-46DA-ADEE-BF5DE31E5B99}
+	EndGlobalSection
+EndGlobal

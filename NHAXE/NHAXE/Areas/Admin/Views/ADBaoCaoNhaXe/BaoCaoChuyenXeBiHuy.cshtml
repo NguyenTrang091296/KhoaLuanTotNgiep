@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header{
+    Danh sách chuyến xe bị hủy
+}
+@model List<Models.ChuyenXeHuy>
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="box">
+
+        <div class="col-lg-10">
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <form name="myForm">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                            <div class="form-group">
+                                <label for="">Từ Ngày*</label>
+                                <div class="col-md-12">
+                                    <input type="date" class="form-control" name="NgayBatDau" id="NgayBatDau" value="@ViewBag.NgayBatDau" />
+
+
+                                </div>
+
+                            </div>
+                        </div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                            <div class="form-group">
+                                <label for="">Đến ngày*</label>
+                                <div class="col-md-12">
+                                    <input type="date" class="form-control" name="NgayKetThuc" id="NgayKetThuc" value="@ViewBag.NgayKetThuc" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <button class="btn-success" style="margin-left: 295px; margin-top: 30px;" type="submit" onclick="kiemTraReport()"><i class="fa fa-save bg-success"></i> Xác Nhận</button>
+                    </form>
+                    <p>
+                        <a class="btn btn-success" href="@Url.Action("ExportChuyenXeBiHuy",new { NgayBatDau= @ViewBag.NgayBatDau, NgayKetThuc= @ViewBag.NgayKetThuc })"> Report PDF </a>
+
+
+                    </p>
+                    
+                </div>
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Mã phân công</th>
+                                    <th class="text-center">Mã Tuyến</th>
+                                    <th class="text-center">Bảng số xe</th>
+                                    <th class="text-center">Ngày khởi hành</th>
+                                    <th class="text-center">Giờ khởi hành</th>
+                                    <th class="text-center">Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id="tr-item_@item.MaChuyen">
+                                        <td class="text-center">@item.MaChuyen</td>
+                                        <td class="text-center">@item.MaTD </td>
+                                        <td class="text-center">@item.BSX</td>
+                                        <td class="text-center">@item.NgayKH.ToString("dd-MM-yyyy ")</td>
+                                        <td class="text-center">@item.GioKH</td>
+                                        <td class="text-center">@item.TrangThai </td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+
+    </div>
+
+    <script language="javascript">
+
+        function kiemTraReport(){
+            var NgayBatDau = document.forms["myForm"]["NgayBatDau"].value;
+            var NgayKetThuc = document.forms["myForm"]["NgayKetThuc"].value;
+            $.post('/Admin/ADBaoCaoNhaXe/BaoCaoChuyenXeBiHuy1', { NgayBatDau: NgayBatDau, NgayKetThuc: NgayKetThuc }, function (data) {
+                if (data.success == 1) {
+                    var url = "/Admin/ADBaoCaoNhaXe/BaoCaoChuyenXeBiHuy?NgayBatDau=" + NgayBatDau + "&&NgayKetThuc=" + NgayKetThuc;
+                    window.location.href = url;
+                } else { alert('Không có kết quả tương ứng'); }
+            })
+        }
+
+    </script>
+
+</body>
+
+</html>
+

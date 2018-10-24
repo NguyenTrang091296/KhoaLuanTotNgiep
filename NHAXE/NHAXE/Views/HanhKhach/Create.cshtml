@@ -1,0 +1,217 @@
+﻿@model Models.Framework.HanhKhach
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta property="fb:admins" content="1373014969" />
+    <meta property="fb:app_id" content="1677748725772019" />
+    <title>Đăng ký | PONOBus ID</title>
+
+    <!--[if lt IE 9]>
+     <script src="html5.js" tppabs="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" id="theme-style-css" href="/Content/css/style.min.css" type="text/css" media="all" />
+    <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <style>
+        select#GioiTinh {
+            height: 30px;
+            width: 164px;
+            margin-left: 48px;
+        }
+        input#NgaySinh {
+            width: 194px;
+        }
+    </style>
+</head>
+<body style="background: #fff;">
+
+    <section id="body-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-ms-12">
+                    <div style="height: 272px;
+    border-radius: 5px;border: 1px solid #ddd;height: 500px;">
+                        <!-- Nav tabs -->
+                        <div class="text-center text-uppercase text-primary">
+                            <strong>Đăng kí Khách hàng</strong>
+                        </div>
+                        @using (Html.BeginForm("Create", "HanhKhach", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal lb1">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger err" })
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Họ và tên*</label>
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.TenHK, new { htmlAttributes = new { @class = "form-control", id = "tongtien" } })
+                                        @Html.ValidationMessageFor(model => model.TenHK, "", new { @class = "text-danger err1" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Login Name*</label>
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.LGName, new { htmlAttributes = new { @class = "form-control", id = "tongtien" } })
+                                        @Html.ValidationMessageFor(model => model.LGName, "", new { @class = "text-danger err1" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Ngày Sinh*</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Số chứng minh thư*</label>
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control", id = "tongtien" } })
+                                        @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger err1" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group ">
+                                    <label for="">Giới tính*</label>
+                                    <div class="col-md-14">
+                                        @Html.DropDownList("GioiTinh", new List<SelectListItem>
+                                       {
+
+                                            new SelectListItem {Text = "Nam" ,Value ="Nam" },
+                                           new SelectListItem {Text = "Nữ" ,Value ="Nữ" },
+
+
+                                       }, new {id = "GioiTinh", @class = "controldropdownlist", stype= " height: 30px; width:150px"
+                                       })
+                                        @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Email*</label>
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id = "tongtien" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger err1" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Số điện thoại*</label>
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", id = "tongtien" } })
+                                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger err1" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Địa Chỉ</label>
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", id = "tongtien" } })
+                                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger err1" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-ms-12">
+                                        <label for="">Tỉnh/TP<span class="text-primary">*</span></label>
+                                        <select class="form-control" data-val="true" data-val-number="The field ProvinceId must be a number." data-val-required="The ProvinceId field is required." datavalue="0" id="ProvinceId" name="ProvinceId"><option value="0">Chọn tỉnh/tp</option><option value="1">An Giang</option><option value="2">Bà Rịa - Vũng Tàu</option><option value="5">Bắc Giang</option><option value="4">Bắc Kạn</option><option value="3">Bạc Liêu</option><option value="6">Bắc Ninh</option><option value="7">Bến Tre</option><option value="9">Bình Định</option><option value="8">Bình Dương</option><option value="10">Bình Phước</option><option value="11">Bình Thuận</option><option value="12">Cà Mau</option><option value="14">Cần Thơ</option><option value="13">Cao Bằng</option><option value="15">Đà Nẵng</option><option value="16">Đắk Lắk</option><option value="17">Đắk Nông</option><option value="20">Điện Biên</option><option value="18">Đồng Nai</option><option value="19">Đồng Tháp</option><option value="21">Gia Lai</option><option value="22">Hà Giang</option><option value="23">Hà Nam</option><option value="24">Hà Nội</option><option value="25">Hà Tĩnh</option><option value="26">Hải Dương</option><option value="27">Hải Phòng</option><option value="29">Hậu Giang</option><option value="28">Hòa Bình</option><option value="30">Hưng Yên</option><option value="32">Khánh Hòa</option><option value="33">Kiên Giang</option><option value="34">Kon Tum</option><option value="35">Lai Châu</option><option value="38">Lâm Đồng</option><option value="37">Lạng Sơn</option><option value="36">Lào Cai</option><option value="39">Long An</option><option value="40">Nam Định</option><option value="41">Nghệ An</option><option value="42">Ninh Bình</option><option value="43">Ninh Thuận</option><option value="44">Phú Thọ</option><option value="45">Phú Yên</option><option value="46">Quảng Bình</option><option value="47">Quảng Nam</option><option value="48">Quảng Ngãi</option><option value="49">Quảng Ninh</option><option value="50">Quảng Trị</option><option value="51">Sóc Trăng</option><option value="52">Sơn La</option><option value="53">Tây Ninh</option><option value="54">Thái Bình</option><option value="55">Thái Nguyên</option><option value="56">Thanh Hóa</option><option value="57">Thừa Thiên - Huế</option><option value="58">Tiền Giang</option><option value="31">TP. Hồ Chí Minh</option><option value="59">Trà Vinh</option><option value="60">Tuyên Quang</option><option value="61">Vĩnh Long</option><option value="62">Vĩnh Phúc</option><option value="63">Yên Bái</option></select>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-ms-12">
+                                        <label for="">Quận/Huyện<span class="text-primary">*</span></label>
+                                        <select class="form-control" data-val="true" data-val-number="The field CityId must be a number." data-val-required="The CityId field is required." datavalue="0" id="CityId" name="CityId"><option value="0">Chọn quận/huyện</option></select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Mật Khẩu*</label>
+                                    <div class="col-md-12">
+
+                                        @Html.PasswordFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ms-12">
+                                <div class="form-group">
+                                    <label for="">Xác nhận mật Khẩu*</label>
+                                    <div class="col-md-12">
+                                        <input name="XNMatKhau" type="password" id="XNMatKhau" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-10 btnm">
+                                    <input type="submit" value="Đăng Kí" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-ms-12">
+                    <div class="panel" style="border: 1px solid #ddd;height: 500px;">
+                        <p class="text-center text-uppercase text-primary">
+                            <strong>Điều khoản &amp;Đăng kí</strong>
+                        </p>
+                        <div style="padding: 20px;">
+                            <p class="text-justify">(*) Quý khách vui lòng đăng kí trước khi bắt đầu mua vé.</p>
+                            <p class="text-justify">(*) Quý khách vui lòng điền chính xác thông tin để công ty liên hệ trong quá trình đưa đón khách</p>
+
+                            <p class="text-justify">
+                                (*) Nếu quý khách có thắc mắc vấn đề gì, vui lòng liên hệ số điện thoại<br>
+                                <strong class="text-primary" style="font-size: 1.2em;">1900 8198</strong>
+
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

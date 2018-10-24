@@ -1,0 +1,144 @@
+﻿
+@model List<Models.Framework.TuyenDuong>
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible"
+          ="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>Giá vé PONO|Lịch trình</title>
+
+
+
+
+
+    <link rel="stylesheet" id="theme-style-css" href="/Content/css/style.min.css" type="text/css" media="all" />
+    <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+</head>
+<body style="background: #fff;">
+    <section id="body-content">
+        <div class="container">
+            @using (Html.BeginForm("GetLoTrinh", "LoTrinh", FormMethod.Get))
+            {
+                <label class="lbtk">Tìm kiếm lộ trình theo mã tuyến</label>
+                <div class="input-group input-group-sm iptk">
+
+                    <input type="text" value="@ViewBag.SearchString" name="mT" class="form-control pull-right" placeholder="DAKLAK-SAIGON">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default" style="margin-top:0px;"><i class="fa fa-search"></i></button>
+                        @*<a href='@Url.Action("GetLoTrinh", "LoTrinh/GetLoTrinh", new { mT = @ViewBag.SearchString })' >
+
+                            </a>*@
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <h3 class="text-primary text-uppercase">Tuyến đường</h3>
+
+                @{List<Models.Framework.TuyenDuong> list = new List<Models.Framework.TuyenDuong>();
+
+                    int temp = 0;}
+                @foreach (var i in Model)
+                {
+
+                    foreach (var j in list)
+                    {
+                        if (j.BenDi.CompareTo(i.BenDi) == 0)
+                        {
+                            temp++;
+                        }
+                    }
+                    if (temp == 0)
+                    {
+                        list.Add(i);
+                    }
+                    temp = 0;
+
+                }
+                @foreach (var item in list)
+                {
+                    <div class="table-responsive">
+                        <h3 class="text-uppercase text-success">
+                            @item.BenDi
+                            <i class="fa fa-exchange"></i>
+                        </h3>
+                        <table class="table ">
+                            <div>
+                                <thead>
+
+                                    <tr class="text-white bg-light-green">
+                                        @*<th style="text-align:center">STT</th>*@
+                                        <th style="text-align:center" data-toggle="true">Mã tuyến</th>
+                                        <th style="text-align:center">Bến đi</th>
+                                        <th style="text-align:center">Bến đến</th>
+                                        <th style="text-align:center" data-hide="phone">Quãng đường</th>
+                                        <th style="text-align:center" data-hide="phone">Thời gian</th>
+                                        @*<th data-hide="phone">Giá vé</th>*@
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                            </div>
+                            <tbody>
+
+                                @foreach (var i in Model)
+                                {
+                                    if (@i.BenDi == @item.BenDi)
+                                    {
+                                        <tr class="route-row1342">
+                                            @*<td style="text-align:center">@item.stt </td>*@
+                                            <td style="text-align:center"> @i.MaTD</td>
+                                            <td style="text-align:center">@i.BenDi</td>
+                                            <td style="text-align:center">@i.BenDen</td>
+                                            <td style="text-align:center">@i.QuangDuong</td>
+                                            <td style="text-align:center">
+
+                                                @i.ThoiGian
+                                            </td>
+
+                                            @*<td>
+                                                <p>
+                                                    <strong class="text-primary">
+                                                        @i.GiaVe<sup>đ/vé</sup>
+                                                    </strong>
+                                                </p>
+                                            </td>*@
+
+                                            <td>
+                                                <a href='@Url.Action("GetLoTrinh", "LoTrinh", new { mT = @i.MaTD})' class="btn br-btn-default btn-flat futa-book-ticket">
+                                                    <i class="fa fa-ticket icon-flat text-primary icon-bg-default"></i>Mua vé
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                }
+            </div>
+
+        </div>
+
+    </section>
+
+</body>

@@ -1,0 +1,243 @@
+﻿
+@model  Models.Framework.ThongTinTuyenXe
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <style>
+
+        .detailBox {
+            width: 1180px;
+            border: 1px solid #bbb;
+            margin: 170px;
+        }
+
+        .textarea {
+            width: 100%;
+            height: 100vw;
+        }
+
+        .titleBox {
+            background-color: #fdfdfd;
+            padding: 10px;
+        }
+
+            .titleBox label {
+                color: #444;
+                margin: 0;
+                display: inline-block;
+            }
+
+
+        .commentBox {
+            padding: 10px;
+            border-top: 1px dotted #bbb;
+        }
+
+            .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+                width: 80%;
+            }
+
+            .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+                width: 18%;
+            }
+
+        .actionBox .form-group * {
+            width: 100%;
+        }
+
+        .taskDescription {
+            margin-top: 10px 0;
+        }
+
+        .commentList {
+            padding: 0;
+            list-style: none;
+            max-height: 500px;
+            overflow: auto;
+        }
+
+            .commentList li {
+                margin: 0;
+                margin-top: 10px;
+            }
+
+                .commentList li > div {
+                    display: table-cell;
+                }
+
+        .commenterImage {
+            width: 30px;
+            margin-right: 5px;
+            height: 100%;
+            float: left;
+        }
+
+            .commenterImage img {
+                width: 100%;
+                border-radius: 50%;
+            }
+
+        .commentText p {
+            margin: 0;
+        }
+
+        .sub-text {
+            color: #aaa;
+            font-family: verdana;
+            font-size: 11px;
+        }
+
+        .actionBox {
+            border-top: 1px dotted #bbb;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+<body style="background: #fff;">
+    <section id="body-content">
+        <div class="container">
+            <div class="row">
+                <h3 class="text-primary text-uppercase">Lộ Trình</h3>
+
+                <div class="table-responsive">
+
+                    <table class="table ">
+                        <div>
+                            <thead>
+                                <tr class="text-white bg-light-green">
+
+                                    <th style="text-align:center" data-toggle="true">Mã Lộ Trình</th>
+                                    <th style="text-align:center">Mã Tuyến</th>
+                                    <th style="text-align:center">Bảng Số Xe</th>
+                                    <th style="text-align:center" data-hide="phone">Ngày đi</th>
+                                    <th style="text-align:center" data-hide="phone">Giờ Khởi Hành</th>
+                                    <th style="text-align:center" data-hide="phone">Số Ghế Trống</th>
+                                    <th data-hide="phone">Giá vé</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                        </div>
+                        <tbody>
+                            @foreach (var item in Model.DSChuyen)
+                            {
+
+                                <tr class="route-row1342">
+                                    <td style="text-align:center">@item.PhanCongChuyens.MaChuyen</td>
+                                    <td style="text-align:center"> @item.PhanCongChuyens.MaTD</td>
+                                    <td style="text-align:center">@item.PhanCongChuyens.BSX</td>
+                                    <td style="text-align:center">@item.PhanCongChuyens.NgayKH</td>
+                                    <td style="text-align:center">@item.PhanCongChuyens.GioKH</td>
+                                    <td style="text-align:center">@item.PhanCongChuyens.SoVeCL</td>
+                                    <td>
+                                        <p>
+                                            <strong class="text-primary">
+                                                @item.giave<sup>đ/vé</sup>
+                                            </strong>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a href='@Url.Action("Datve", "DatVe", new { MaPC = @item.PhanCongChuyens.MaChuyen })' class="btn br-btn-default btn-flat futa-book-ticket">
+                                            <i class="fa fa-ticket icon-flat text-primary icon-bg-default"></i>Mua vé
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+        </div>
+
+    </section>
+
+    <div class="detailBox">
+        <div class="titleBox">
+            <label>Bình Luận</label>
+            <button type="button" class="close" aria-hidden="true">&times;</button>
+        </div>
+        <div class="commentBox">
+
+            <p class="taskDescription">Những thắc mắc hoặc bình luận về tuyến xe hãy chia sẽ tại đây.</p>
+        </div>
+        <div class="actionBox">
+            <ul class="commentList">
+                @{var matuyen = "";}
+                @foreach (var i in Model.DSBinhLuan)
+                {
+                    matuyen = i.bluan.MaTuyen;
+                    <li>
+                        <p style="display:inline;">@i.hkhach.LGName</p>
+                        <div class="commenterImage">
+                            <img src="~/Content/image/hinhanh.png" />
+                        </div>
+                        <div class="commentText">
+                            <p class="">@i.bluan.NoiDung</p> <span class="date sub-text">@i.bluan.ThoiGian</span>
+
+                        </div>
+                    </li>
+
+                }
+            </ul>
+           
+        <div>
+            <div class="form-group">
+                <input hidden id="maT" name="maT" value="@matuyen" />
+                <textarea style="max-width:700px ; height: 100px" type="text" placeholder="Bình luận của bạn" id="BinhLuan" name="binhluan"></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+                <button class="btn btn-success pull-right btn-lg" style="max-width:100px ; height: 45px;margin-top:-92px;margin-right:300px" onclick="AddComment()">Add</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- add slidebar menu -->
+    
+
+    <script language="javascript">
+
+
+        function AddComment() {
+            var binhluan = document.getElementById("BinhLuan").value;
+            if (binhluan == "") {
+                alert("Vui lòng nhập bình luân");
+            } else {
+                var maT = document.getElementById("maT").value;
+                $.post('/LoTrinh/BinhLuan', { maTuyen: maT, binhluan: binhluan }, function (data) {
+                    if (data.success == -1) {
+                        alert('Bạn chưa đăng nhập');
+                    } else if (data.success == 0) {
+                        alert('Bị lỗi');
+                    }
+                })
+            }
+            
+
+        }
+      
+    </script>
+
+</body>
+</html>
+
+

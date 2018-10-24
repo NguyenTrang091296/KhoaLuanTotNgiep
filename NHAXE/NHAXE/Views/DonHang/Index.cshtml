@@ -1,0 +1,211 @@
+﻿
+@model List<Models.Dao.DonHangUser>
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="vi-VN">
+
+<body style="background: #fff;">
+    <section id="body-content">
+        <div class="container">
+           
+            <div class="row">
+                <h3 class="text-primary text-uppercase">Giỏ Hàng</h3>
+                <div>
+                   <form>
+                        <h2>Chức năng </h2>
+                        <button class="btn btn-success pull-right btn-lg" style="  margin-right: 100px;
+            margin-bottom: 30px;" type="submit">Thanh toán</button>
+                </div>
+
+                    <table class="table ">
+
+
+
+                        @foreach (var i in Model)
+                        {
+                            <div>
+                                <thead>
+
+                                    <tr class="text-white bg-light-green">
+                                        @*<th>#</th>*@
+                                        <th style="text-align:center" data-toggle="true">Mã đơn hàng</th>
+                                        <th style="text-align:center">Mã chuyến xe</th>
+                                        <th style="text-align:center">Số lượng vé</th>
+                                        <th style="text-align:center">Tổng tiền</th>
+                                        <th style="text-align:center" data-hide="phone">Ngày đặt vé</th>
+                                        <th style="text-align:center" data-hide="phone">Hình thức đặt</th>
+                                        <th style="text-align:center" data-hide="phone">Tình Trạng</th>
+                                        <th style="text-align:center" data-hide="phone">Xóa đơn hàng</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                            </div>
+                            <tbody>
+                                <tr order-row-@item.Id>
+                                    @*<td class="col-md-1" style="text-align:center">
+                                        @if (@i.donHang.TrangThai == 0)
+                                        {
+                                            <input value="@i.donHang.MaDH" checked type="checkbox" name="SelectPay" id="SelectPay" class="SelectPay" />
+                                        }
+                                        else
+                                        {
+                                            <input value="@i.donHang.MaDH" type="checkbox" name="SelectPay" id="SelectPay" class="SelectPay" disabled />
+                                        }
+                                    </td>*@
+                                    <td style="text-align:center"> @i.donHang.MaDH</td>
+                                    <td style="text-align:center">@i.donHang.MaPC</td>
+                                    <td style="text-align:center"> @i.donHang.Soluongve</td>
+                                    <td style="text-align:center">
+                                        <p>
+                                            <strong class="text-primary">
+                                                @i.donHang.TongTien<sup>đ/vé</sup>
+                                            </strong>
+                                        </p>
+                                    </td>
+                                    <td style="text-align:center"> @i.donHang.NgayDH.ToString()</td>
+                                    <td style="text-align:center">
+
+                                        @((i.donHang.HinhThuc == 0) ? "Trực tiếp" : "Oline")
+                                    </td>
+                                    <td style="text-align:center">
+
+                                        @((i.donHang.TrangThai == 0) ? "Chưa thanh toán" : (i.donHang.TrangThai == 1) ? "Đã Thanh Toán" : "Đã hủy" )
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="btn btn-danger btn-xs btn-delete" data-madonhang=@i.donHang.MaDH onclick="deleteItem()"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <thead>
+
+                                <tr class="text-white bg-light-green">
+
+                                    <th style="text-align:center" data-toggle="true">Mã đơn hàng</th>
+                                    <th style="text-align:center">Id Ghế</th>
+                                    <th style="text-align:center">Vị trí ngồi</th>
+                                    <th style="text-align:center">Giá Vé</th>
+                                    <th style="text-align:center">xóa vé</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var j in i.veXe)
+                                {
+
+                                    <tr class="route-row1342">
+                                        @*<td style="text-align:center">@item.stt </td>*@
+                                        <td style="text-align:center"> @j.MaDH</td>
+                                        <td style="text-align:center">@j.IDGhe</td>
+                                        <td style="text-align:center">@j.VitriNgoi</td>
+                                        <td style="text-align:center">@(@i.donHang.TongTien / @i.donHang.Soluongve) <sup>đ/vé</sup></td>
+                                        <td class="text-center"> <a class="btn btn-danger btn-xs btn-delete" ma-dh="@i.donHang.MaDH" ghe-id="@j.IDGhe" onclick="deleteVeXeItem('@i.donHang.MaDH','@j.IDGhe')" href="javascript:void(0)"><i class="fa fa-trash-o"></i></a></td>
+                                    </tr>
+
+
+                                }
+                            </tbody>
+
+
+                        }
+
+
+                    </table>
+
+
+               
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    
+    <script  language="javascript">
+
+        
+        function deleteDonHangItem() {
+            var donhang = $('.madonhang').attr('data-madonhang').val();
+            bootbox.confirm({
+                title: "Thông báo xóa?",
+                message: "Bạn có muốn xóa mục này không? ",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Hủy'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Tiếp tục'
+                    }
+                },
+                callback: function (result) {
+                    if (result == true) {
+                        $.post('/Admin/DonHang/DeleteDonHang', { id: id }, function (data) {
+                            if (data.success == 1) {
+                                alert('Xóa thành công!');
+                                $('#tr-item_' + id).remove();
+                            } else { alert('Xóa thất bại!'); }
+                        })
+                    }
+                }
+            });
+               
+            
+        }
+        function deleteVeXeItem(madh, idGhe) {
+
+            bootbox.confirm({
+                title: "Thông báo xóa?",
+                message: "Bạn có muốn xóa mục này không? ",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Hủy'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Tiếp tục'
+                    }
+                },
+                callback: function (result) {
+                    if (result == true) {
+                        $.post('/Admin/TuyenDuong/DeleteVeXe', { id: madh, idghe: idGhe }, function (data) {
+                            if (data.success == 1) {
+                                alert('Xóa thành công!');
+                                $('#tr-item_' + id).remove();
+                            } else { alert('Xóa thất bại!'); }
+                        })
+                    }
+                }
+            });
+
+        }
+        $(document).ready(function () {
+
+            $('.SelectPay').on('click', function () {
+                //alert($(this).is(":checked"));
+                //alert($(this).data('id'));
+
+                var value = $(this).is(":checked");
+                var id = $(this).val();
+
+                //$.post('/User/SelectOrder', { id: id, val: value }, function (res) {
+                //    $('#total-prices').text(res);
+                //})
+            });
+
+            $('.btn-delete').on("click", function () {
+                alert("click");
+            });
+        }
+        </script>
+</body>
+</html>
+

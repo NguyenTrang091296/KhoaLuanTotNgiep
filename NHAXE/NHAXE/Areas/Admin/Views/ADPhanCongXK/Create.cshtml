@@ -1,0 +1,78 @@
+﻿@model Models.Framework.PhanCongChuyen
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+        Thêm chuyến xe mới
+    }
+<head>
+    <style>
+        select {
+            height: 30px;
+            width: 276px;
+        }
+
+       
+    </style>
+</head>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal" style="margin-top: 50px;">
+   
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+   
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Mã Tuyến:</label>
+        <div class="col-xs-5 selectContainer">
+            @Html.DropDownListFor(model => model.MaTD, null, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MaTD, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Bảng số xe:</label>
+        <div class="col-xs-5 selectContainer">
+            @Html.DropDownListFor(model => model.BSX, null, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BSX, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Ngày Khởi hành:</label>
+        <div class="col-xs-3 selectContainer">
+            @Html.TextBoxFor(model => model.NgayKH, htmlAttributes:new {
+            @class = "salsa-calendar-input form-control dDate date-readonly", @id = "checkin",
+           @autocomplete = "off", @name = "arrival" })
+            @Html.ValidationMessageFor(model => model.NgayKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Giờ khởi hành:</label>
+        <div class="col-xs-5 selectContainer">
+            @Html.DropDownList("GioKH", new List<SelectListItem>
+           {
+
+                new SelectListItem {Text = "8:00" ,Value ="8:00" },
+               new SelectListItem {Text = "12:00" ,Value ="12:00" },
+               new SelectListItem {Text = "20:00" ,Value ="20:00" },
+
+           }, new {id = "GioKH", @class = "controldropdownlist"})
+            @Html.ValidationMessageFor(model => model.GioKH, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 btnm">
+            <input type="submit" value="Lưu" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div style="margin-top: 222px;">
+    @Html.ActionLink("Quay lại", "Index")
+</div>

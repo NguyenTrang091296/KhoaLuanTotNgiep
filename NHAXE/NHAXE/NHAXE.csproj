@@ -1,0 +1,721 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3AD3E844-3243-4241-B21B-6E0CBE7FC999}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHAXE</RootNamespace>
+    <AssemblyName>NHAXE</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Common\CommonConstants.cs" />
+    <Compile Include="Areas\Admin\Common\Encryptor.cs" />
+    <Compile Include="Areas\Admin\Common\UserLogin.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADBaoCaoNhaXeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADVeXeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADDonHangController .cs" />
+    <Compile Include="Areas\Admin\Controllers\ADPhanCongGheController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADPhanCongCVController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADPhanCongXKController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADGiaVeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADNhanVienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADHomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADHanhKhachController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADXeKhachController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ADTuyenDuongController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Models\ADLoginModel.cs" />
+    <Compile Include="Code\SessionHelper.cs" />
+    <Compile Include="Code\UserSession.cs" />
+    <Compile Include="Controllers\DatVeController.cs" />
+    <Compile Include="Controllers\DonHangController.cs" />
+    <Compile Include="Controllers\HanhKhachController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LoTrinhController.cs" />
+    <Compile Include="Controllers\TuyenDuongController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\CrystalReportThongKeChuyenXe.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportThongKeChuyenXe.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CrystalReportThongKeChuyenXeHuy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportThongKeChuyenXeHuy.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DataSetChuyenXeHuy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetChuyenXeHuy.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\assets\css\datepicker.css" />
+    <Content Include="Areas\Admin\assets\css\main-style.css" />
+    <Content Include="Areas\Admin\assets\css\style.css" />
+    <Content Include="Areas\Admin\assets\font-awesome\css\font-awesome.css" />
+    <Content Include="Areas\Admin\assets\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Areas\Admin\assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\assets\img\hinhdaidien.png" />
+    <Content Include="Areas\Admin\assets\img\logo.png" />
+    <Content Include="Areas\Admin\assets\img\user.jpg" />
+    <Content Include="Areas\Admin\assets\img\xe.jpg" />
+    <Content Include="Areas\Admin\assets\js\bootbox.min.js" />
+    <Content Include="Areas\Admin\assets\js\bootstrap-datepicker.js" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap\bootstrap.css" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap\bootstrap.js" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap\bootstrap.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\dataTables\dataTables.bootstrap.css" />
+    <Content Include="Areas\Admin\assets\plugins\dataTables\dataTables.bootstrap.js" />
+    <Content Include="Areas\Admin\assets\plugins\dataTables\jquery.dataTables.js" />
+    <Content Include="Areas\Admin\assets\plugins\flot\excanvas.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\flot\jquery.flot.js" />
+    <Content Include="Areas\Admin\assets\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="Areas\Admin\assets\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="Areas\Admin\assets\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\jquery-1.10.2.js" />
+    <Content Include="Areas\Admin\assets\plugins\metisMenu\jquery.metisMenu.js" />
+    <Content Include="Areas\Admin\assets\plugins\morris\morris-0.4.3.min.css" />
+    <Content Include="Areas\Admin\assets\plugins\morris\morris.js" />
+    <Content Include="Areas\Admin\assets\plugins\morris\raphael-2.1.0.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\pace\pace-theme-big-counter.css" />
+    <Content Include="Areas\Admin\assets\plugins\pace\pace.js" />
+    <Content Include="Areas\Admin\assets\plugins\social-buttons\social-buttons.css" />
+    <Content Include="Areas\Admin\assets\plugins\timeline\timeline.css" />
+    <Content Include="Areas\Admin\assets\scripts\dashboard-demo.js" />
+    <Content Include="Areas\Admin\assets\scripts\flot-demo.js" />
+    <Content Include="Areas\Admin\assets\scripts\morris-demo.js" />
+    <Content Include="Areas\Admin\assets\scripts\rmodal.js" />
+    <Content Include="Areas\Admin\assets\scripts\siminta.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\custom.min.css" />
+    <Content Include="Content\css\custom.min.css-v=2311.css" />
+    <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\fontawesome-stars.css" />
+    <Content Include="Content\css\fontawesome.min.css" />
+    <Content Include="Content\css\jquery.fancybox-1.3.4.css" />
+    <Content Include="Content\css\SalsaCalendar.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style.min.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\fonts\codropsicons\codropsicons.svg" />
+    <Content Include="Content\fonts\codropsicons\license.txt" />
+    <Content Include="Content\fonts\icomoon\icomoon.svg" />
+    <Content Include="Content\image\banner1.png" />
+    <Content Include="Content\image\banner2.png" />
+    <Content Include="Content\image\banner3.png" />
+    <Content Include="Content\image\button-19006067-03.png" />
+    <Content Include="Content\image\hinhanh.png" />
+    <Content Include="Content\image\logo-futa.png" />
+    <Content Include="Content\image\logo-pono.png" />
+    <Content Include="Content\image\uk.png" />
+    <Content Include="Content\image\VN.png" />
+    <Content Include="Content\img\01.jpg" />
+    <Content Include="Content\img\02.jpg" />
+    <Content Include="Content\img\03.jpg" />
+    <Content Include="Content\img\04-01.png" />
+    <Content Include="Content\img\04-02.png" />
+    <Content Include="Content\img\04-03.png" />
+    <Content Include="Content\img\04-04.png" />
+    <Content Include="Content\img\04.jpg" />
+    <Content Include="Content\img\07.jpg" />
+    <Content Include="Content\img\08.jpg" />
+    <Content Include="Content\img\09.jpg" />
+    <Content Include="Content\img\10.jpg" />
+    <Content Include="Content\img\1077273308_khai truong BMT-02-213x160.png" />
+    <Content Include="Content\img\1077273308_khai truong BMT-02-214x202.png" />
+    <Content Include="Content\img\11.jpg" />
+    <Content Include="Content\img\1146154018_anh bia-213x160.jpg" />
+    <Content Include="Content\img\1146154018_anh bia-214x202.jpg" />
+    <Content Include="Content\img\1176713385_HHVTHN_IMG_1213-213x160.JPG" />
+    <Content Include="Content\img\1176713385_HHVTHN_IMG_1213-214x202.JPG" />
+    <Content Include="Content\img\13.jpg" />
+    <Content Include="Content\img\1317530919_banner cao loi Express-03-213x160.png" />
+    <Content Include="Content\img\1317530919_banner cao loi Express-03-214x202.png" />
+    <Content Include="Content\img\14.jpg" />
+    <Content Include="Content\img\1426917602_07-tbdt.jpg" />
+    <Content Include="Content\img\1484210915_thu cao loi FTX-01.png" />
+    <Content Include="Content\img\15.jpg" />
+    <Content Include="Content\img\16.jpg" />
+    <Content Include="Content\img\1686887555_05-tbdt.jpg" />
+    <Content Include="Content\img\1698292300_khai truong 3 tuyen moi %28Buon Me Thuot%29-213x160.png" />
+    <Content Include="Content\img\1698292300_khai truong 3 tuyen moi %28Buon Me Thuot%29-214x202.png" />
+    <Content Include="Content\img\1903825819_festival hoa 645x288-01.png" />
+    <Content Include="Content\img\1997046685_banner_trung_tam_gioi_thieu_viec_lam-213x160.jpg.png" />
+    <Content Include="Content\img\2003192792_anh bia-213x160.jpg" />
+    <Content Include="Content\img\2003192792_anh bia-214x202.jpg" />
+    <Content Include="Content\img\26158800_04c-tbdt.jpg" />
+    <Content Include="Content\img\281104751_06-tbdt.jpg" />
+    <Content Include="Content\img\286663279_05b-tbdt.jpg" />
+    <Content Include="Content\img\628097115_04-tbdt.jpg" />
+    <Content Include="Content\img\629424705_festival hoa-555x325-213x160.png" />
+    <Content Include="Content\img\629424705_festival hoa-555x325-214x202.png" />
+    <Content Include="Content\img\688678186_bannertuyendung-213x160.png" />
+    <Content Include="Content\img\747990337_thong cao bao chi-06-213x160.png" />
+    <Content Include="Content\img\747990337_thong cao bao chi-06-214x202.png" />
+    <Content Include="Content\img\886636619_08.jpg" />
+    <Content Include="Content\img\891453153_tuyen-dung-futa-ex-213x160.png" />
+    <Content Include="Content\img\928228897_05c-tbdt.jpg" />
+    <Content Include="Content\img\958332833_bannertuyendungdalat-213x160.png" />
+    <Content Include="Content\img\about-img.jpg" />
+    <Content Include="Content\img\alert-icon1.png" />
+    <Content Include="Content\img\an-droid.png" />
+    <Content Include="Content\img\app-store.png" />
+    <Content Include="Content\img\arrow-right-icon.png" />
+    <Content Include="Content\img\banggiatet - Mien dong-01.png" />
+    <Content Include="Content\img\banggiatet - Mien Tay-01.png" />
+    <Content Include="Content\img\bank.png" />
+    <Content Include="Content\img\banner tet 2018 web-04-213x160.png" />
+    <Content Include="Content\img\banner tet 2018 web-04-214x202.png" />
+    <Content Include="Content\img\banner tet 2018 web-04.png" />
+    <Content Include="Content\img\banner tet 2018 web-06.png" />
+    <Content Include="Content\img\banner tet 2018 web-07.png" />
+    <Content Include="Content\img\banner tet 2018 web-mien dong-213x160.png" />
+    <Content Include="Content\img\banner tet 2018 web-mien dong-214x202.png" />
+    <Content Include="Content\img\banner tet 2018 web-mien tay-213x160.png" />
+    <Content Include="Content\img\banner tet 2018 web-mien tay-214x202.png" />
+    <Content Include="Content\img\banner web 1110x331px-03.png" />
+    <Content Include="Content\img\banner web landing page-02.png" />
+    <Content Include="Content\img\banner web trang chu-01-213x160.png" />
+    <Content Include="Content\img\banner web trang chu-01.png" />
+    <Content Include="Content\img\bannerKTcaranh-nhatrang-01.png" />
+    <Content Include="Content\img\bannerwebtrianbactai --01.png" />
+    <Content Include="Content\img\bantay.png" />
+    <Content Include="Content\img\bg-aboutus.jpg" />
+    <Content Include="Content\img\bg-app.png" />
+    <Content Include="Content\img\bg-li.png" />
+    <Content Include="Content\img\bg_review.jpg" />
+    <Content Include="Content\img\bidv.png" />
+    <Content Include="Content\img\btn-faq.png" />
+    <Content Include="Content\img\car-icon.png" />
+    <Content Include="Content\img\countdown-ipad.png" />
+    <Content Include="Content\img\countdown-iphone.png" />
+    <Content Include="Content\img\countdown.png" />
+    <Content Include="Content\img\customer.png" />
+    <Content Include="Content\img\datve-ev01.jpg" />
+    <Content Include="Content\img\datve-ev02.jpg" />
+    <Content Include="Content\img\datve-ev03.jpg" />
+    <Content Include="Content\img\datve-ev04.jpg" />
+    <Content Include="Content\img\datve-ev06.jpg" />
+    <Content Include="Content\img\datve-ev07.jpg" />
+    <Content Include="Content\img\datve-ev08.jpg" />
+    <Content Include="Content\img\datve-ev10.png" />
+    <Content Include="Content\img\datve-ev11.png" />
+    <Content Include="Content\img\datve-ev12.png" />
+    <Content Include="Content\img\divide.png" />
+    <Content Include="Content\img\download-bg.jpg" />
+    <Content Include="Content\img\futa-thumb-about.png" />
+    <Content Include="Content\img\GB.png" />
+    <Content Include="Content\img\hddv\1.png" />
+    <Content Include="Content\img\hddv\2.png" />
+    <Content Include="Content\img\hddv\3.png" />
+    <Content Include="Content\img\hddv\4.png" />
+    <Content Include="Content\img\hddv\5.png" />
+    <Content Include="Content\img\hddv\6.png" />
+    <Content Include="Content\img\hddv\7.png" />
+    <Content Include="Content\img\hddv\login.png" />
+    <Content Include="Content\img\head-news.jpg" />
+    <Content Include="Content\img\header-tuyendung.jpg" />
+    <Content Include="Content\img\hinh bia-213x160.jpg" />
+    <Content Include="Content\img\hinh bia-555x325.jpg" />
+    <Content Include="Content\img\home.png" />
+    <Content Include="Content\img\HUONGDANDATVE-01.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-02.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-02.png" />
+    <Content Include="Content\img\HUONGDANDATVE-03.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-04.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-05.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-06.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-07.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-08.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-09.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-10.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-11.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-12.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-13.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-14.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-15.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-16.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-17.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-18.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-19.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-20.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-21.jpg" />
+    <Content Include="Content\img\HUONGDANDATVE-21.png" />
+    <Content Include="Content\img\icbus-15.png" />
+    <Content Include="Content\img\icmuiten-08.png" />
+    <Content Include="Content\img\icon-bus.png" />
+    <Content Include="Content\img\icon-loacation.png" />
+    <Content Include="Content\img\icon-office.png" />
+    <Content Include="Content\img\icon-phone-big.png" />
+    <Content Include="Content\img\icon-phone.png" />
+    <Content Include="Content\img\icon-station.png" />
+    <Content Include="Content\img\image\banner1.png" />
+    <Content Include="Content\img\image\banner2.png" />
+    <Content Include="Content\img\image\banner3.png" />
+    <Content Include="Content\img\image\button-19006067-03.png" />
+    <Content Include="Content\img\image\logo-futa.png" />
+    <Content Include="Content\img\image\logo-pono.png" />
+    <Content Include="Content\img\image\uk.png" />
+    <Content Include="Content\img\image\VN.png" />
+    <Content Include="Content\img\indicator.png" />
+    <Content Include="Content\img\indicatorActive.png" />
+    <Content Include="Content\img\khu hoi chung-01.png" />
+    <Content Include="Content\img\khu hoi chung-02-213x160.png" />
+    <Content Include="Content\img\khu hoi chung-02.png" />
+    <Content Include="Content\img\khuyenmaitrungxe.png" />
+    <Content Include="Content\img\leftArrow.png" />
+    <Content Include="Content\img\leftPanelArrow.png" />
+    <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\logo-futa.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\maker.png" />
+    <Content Include="Content\img\new.gif" />
+    <Content Include="Content\img\private\bttnapple-11.png" />
+    <Content Include="Content\img\private\bttngoogle-12.png" />
+    <Content Include="Content\img\private\button-19006067-03.png" />
+    <Content Include="Content\img\private\dathongbao-bocongthuong.png" />
+    <Content Include="Content\img\private\img247-10.png" />
+    <Content Include="Content\img\private\imgip-13.png" />
+    <Content Include="Content\img\private\imgqdchung-17.png" />
+    <Content Include="Content\img\private\imgtongtinhanhly-19.png" />
+    <Content Include="Content\img\private\imgvchanghoa-18.png" />
+    <Content Include="Content\img\private\webfutabusline-01.png" />
+    <Content Include="Content\img\private\webfutabusline-02.png" />
+    <Content Include="Content\img\private\webfutabusline-03.png" />
+    <Content Include="Content\img\private\webfutabusline-04.png" />
+    <Content Include="Content\img\private\webfutabusline-05.png" />
+    <Content Include="Content\img\private\webfutabusline-06.png" />
+    <Content Include="Content\img\private\webfutabusline-07.png" />
+    <Content Include="Content\img\private\webfutabusline-08.png" />
+    <Content Include="Content\img\private\webfutabusline-09.png" />
+    <Content Include="Content\img\pt_trao_qua_2-213x160.jpg" />
+    <Content Include="Content\img\pt_trao_qua_2.jpg" />
+    <Content Include="Content\img\rightArrow.png" />
+    <Content Include="Content\img\rightPanelArrow.png" />
+    <Content Include="Content\img\sacombank.png" />
+    <Content Include="Content\img\SoÌ›Ì‰ GTVT taÌ£Ì†ng GiaÌ‚Ìy khen Cty CP XK PhuÌ›oÌ›ng Trang FUTA BUSLINES - NaÌ†m 2018.jpg" />
+    <Content Include="Content\img\sprite.png" />
+    <Content Include="Content\img\sprite.png-231.png" />
+    <Content Include="Content\img\stripes_10_b.png" />
+    <Content Include="Content\img\taxi.png" />
+    <Content Include="Content\img\tech.png" />
+    <Content Include="Content\img\Tet 2018-2.jpg" />
+    <Content Include="Content\img\Tet 2018.jpg" />
+    <Content Include="Content\img\thenh.jpg" />
+    <Content Include="Content\img\thiep tet dien tu Bus Lines-01 - web-213x160.png" />
+    <Content Include="Content\img\thiep tet dien tu Bus Lines-01 - web.png" />
+    <Content Include="Content\img\thong bao napas.jpg" />
+    <Content Include="Content\img\thuchuctetnhanvien2018-01.png" />
+    <Content Include="Content\img\tramdung.jpg" />
+    <Content Include="Content\img\tramdung1.jpg" />
+    <Content Include="Content\img\tramdung2.jpg" />
+    <Content Include="Content\img\tramdung3.jpg" />
+    <Content Include="Content\img\tramdung4.jpg" />
+    <Content Include="Content\img\tramdung5.jpg" />
+    <Content Include="Content\img\tri_dung_1.jpg" />
+    <Content Include="Content\img\vanchuyen.jpg" />
+    <Content Include="Content\img\vchanhkhach01.png" />
+    <Content Include="Content\img\vchanhkhach02.png" />
+    <Content Include="Content\img\vchanhkhach03.png" />
+    <Content Include="Content\img\vchanhkhach04.png" />
+    <Content Include="Content\img\vchanhkhach05.png" />
+    <Content Include="Content\img\vckhach.jpg" />
+    <Content Include="Content\img\vietinbank.png" />
+    <Content Include="Content\img\[new]-landing-page-header.png" />
+    <Content Include="Content\js\booking-partials.js" />
+    <Content Include="Content\js\booking-partials.min.js" />
+    <Content Include="Content\js\bootbox.min.js" />
+    <Content Include="Content\js\bootstrap-datepicker.js" />
+    <Content Include="Content\js\bootstrap-datepicker\css\bootstrap-datepicker.min.css" />
+    <Content Include="Content\js\bootstrap-datepicker\css\datepicker.css" />
+    <Content Include="Content\js\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="Content\js\bootstrap-datepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="Content\js\bootstrap-datepicker\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\effect.js" />
+    <Content Include="Content\js\helper.min.js" />
+    <Content Include="Content\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\js\jquery.barrating.es5.js" />
+    <Content Include="Content\js\jquery.bootstrap.newsbox.min.js" />
+    <Content Include="Content\js\jquery.counterup.min.js" />
+    <Content Include="Content\js\jquery.fancybox-1.3.4.js" />
+    <Content Include="Content\js\jquery.fancybox-1.3.4.pack.js" />
+    <Content Include="Content\js\jquery.mousewheel-3.0.4.pack.js" />
+    <Content Include="Content\js\jquery.mousewheel.min.js" />
+    <Content Include="Content\js\lighgallery\lg-autoplay.js" />
+    <Content Include="Content\js\lighgallery\lg-fullscreen.js" />
+    <Content Include="Content\js\lighgallery\lg-thumbnail.js" />
+    <Content Include="Content\js\lighgallery\lg-zoom.js" />
+    <Content Include="Content\js\lighgallery\lightGallery.css" />
+    <Content Include="Content\js\lighgallery\lightGallery.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\modernizr.js" />
+    <Content Include="Content\js\SalsaCalendar.min.js" />
+    <Content Include="Content\js\waypoints.min.js" />
+    <Content Include="Content\js\wow.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\plugins\flexslider\flexslider.min.css" />
+    <Content Include="Content\plugins\flexslider\jquery.flexslider-min.js" />
+    <Content Include="Content\plugins\sidebar\sidebar.css" />
+    <Content Include="Content\plugins\sidebar\slidebars.css" />
+    <Content Include="Content\plugins\sidebar\slidebars.js" />
+    <Content Include="Content\plugins\sliderTabs\styles\jquery.sliderTabs.min.css" />
+    <Content Include="Content\plugins\slideTabs\jquery.sliderTabs.min.js" />
+    <Content Include="Content\plugins\slideTabs\styles\jquery.sliderTabs.min.css" />
+    <Content Include="Content\Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Content\Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Content\Scripts\bootbox.min.js" />
+    <Content Include="Content\Scripts\bootstrap.js" />
+    <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Views\ADTuyenDuong\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADHome\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADTuyenDuong\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ADGiaVe\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADGiaVe\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ADGiaVe\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ADXeKhach\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ADXeKhach\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADHanhKhach\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ADHanhKhach\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADHanhKhach\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ADNhanVien\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ADNhanVien\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ADNhanVien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADPhanCongCV\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ADPhanCongCV\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ADPhanCongCV\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADPhanCongXK\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ADPhanCongXK\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ADPhanCongXK\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADPhanCongGhe\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADLogin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADDonHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADVeXe\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ADBaoCaoNhaXe\BaoCaoTatCaChuyenXe.cshtml" />
+    <Content Include="Areas\Admin\Views\ADBaoCaoNhaXe\BaoCaoTatCaChuyenXeBiHuy.cshtml" />
+    <Content Include="Areas\Admin\Views\ADBaoCaoNhaXe\BaoCaoChuyenXeBiHuy.cshtml" />
+    <None Include="Content\Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Content\Scripts\jquery-1.10.2.js" />
+    <Content Include="Content\Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Content\Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Content\Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\css\desktop.ini" />
+    <Content Include="Content\fonts\.DS_Store" />
+    <Content Include="Content\fonts\codropsicons\codropsicons.eot" />
+    <Content Include="Content\fonts\codropsicons\codropsicons.ttf" />
+    <Content Include="Content\fonts\codropsicons\codropsicons.woff" />
+    <Content Include="Content\fonts\icomoon\icomoon.eot" />
+    <Content Include="Content\fonts\icomoon\icomoon.ttf" />
+    <Content Include="Content\fonts\icomoon\icomoon.woff" />
+    <Content Include="Content\less\datepicker.less" />
+    <Content Include="Content\plugins\sidebar\desktop.ini" />
+    <Content Include="Content\plugins\slideTabs\desktop.ini" />
+    <Content Include="Content\Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Reports\DataSetChuyenXeHuy.xsc">
+      <DependentUpon>DataSetChuyenXeHuy.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\DataSetChuyenXeHuy.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetChuyenXeHuy.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\DataSetChuyenXeHuy.xss">
+      <DependentUpon>DataSetChuyenXeHuy.xsd</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\TuyenDuong\Index.cshtml" />
+    <Content Include="Views\LoTrinh\GetLoTrinh.cshtml" />
+    <Content Include="Views\DatVe\DatVe.cshtml" />
+    <Content Include="Views\DonHang\Index.cshtml" />
+    <Content Include="Views\HanhKhach\Create.cshtml" />
+    <Content Include="Views\TuyenDuong\BinhLuan.cshtml" />
+    <Content Include="Views\HanhKhach\DiaChi.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{68e6113d-76ed-42d7-a4e1-be76f6757dec}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\CrystalReportThongKeChuyenXe.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportThongKeChuyenXe.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CrystalReportThongKeChuyenXeHuy.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportThongKeChuyenXeHuy.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54957</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:54957/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
